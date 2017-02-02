@@ -16,14 +16,15 @@ function DatePicker() {
 				var div = document.createElement('div');
 				if (i === 0) {
 					grid[i].push(weekDays[j]); //set week days
-					document.getElementById('main').appendChild(div);
+					document.querySelector('#main').appendChild(div);
 					div.textContent = weekDays[j];
 					div.style.cssText = "background-color: #b5b3af; color: white;";
 				} else {
 					grid[i][j] = {};
-					document.getElementById('main').appendChild(div);
+					document.querySelector('#main').appendChild(div);
 				}
 				div.className = "cell";
+				
 				div.setAttribute("id", '' + i + j);
 			}
 		}
@@ -33,10 +34,11 @@ function DatePicker() {
 	this.fillGrid = function(month) {
 		onClickHandlers();
 		var n = 0;
+		var currentYear = 2017;
 		clearGrid(grid); //clear before filling
 		for (var i = 1; i < SIZE; i++) {
 			for (var j = 0; j < SIZE; j++) {
-				var day = new Date(2017, month, ++n);
+				var day = new Date(currentYear, month, ++n);
 				if (i === 1) {
 					((day.getDay() - 1) < 0) ? j = SIZE - 1 : j = day.getDay() - 1; //start from correct week day
 				}
@@ -54,7 +56,7 @@ function DatePicker() {
 			}
 		}
 		var m = grid[2][4].date.getMonth();
-		document.getElementById('monthName').textContent = months[m]; //render the selected month
+		document.querySelector('#monthName').textContent = months[m]; //render the selected month
 	};
 	//----------return initial class, reset date---------------------------------------------
 	var clearGrid = function(arr) {
@@ -86,15 +88,15 @@ function DatePicker() {
 			weekday: 'long',
 			timezone: 'UTC'
 		};
-		document.getElementById('info').textContent = grid[x][y].date.toLocaleString('ru', options);
+		document.querySelector('#info').textContent = grid[x][y].date.toLocaleString('ru', options);
 	};
 	//----------set click handlers on arrows and dates-----------------------------------
 	var onClickHandlers = function() {
-		document.getElementById('back').onclick = function() {
+		document.querySelector('#back').onclick = function() {
 			currentMonth--;
 			self.fillGrid(currentMonth);
 		};
-		document.getElementById('forward').onclick = function() {
+		document.querySelector('#forward').onclick = function() {
 			currentMonth++;
 			self.fillGrid(currentMonth);
 		};
