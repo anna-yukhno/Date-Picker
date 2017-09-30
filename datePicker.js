@@ -15,16 +15,17 @@ function DatePicker() {
 			for (var j = 0; j < SIZE; j++) {
 				var div = document.createElement('div');
 				if (i === 0) {
-					grid[i].push(weekDays[j]); //set week days
+					div.className = "cell day-name";
+					grid[i].push(weekDays[j]);
 					document.querySelector('#main').appendChild(div);
 					div.textContent = weekDays[j];
-					div.style.cssText = "background-color: #b5b3af; color: white;";
 				} else {
+					div.className = "cell";
 					grid[i][j] = {};
 					document.querySelector('#main').appendChild(div);
 				}
-				div.className = "cell";
-				
+				// div.className = "cell";
+
 				div.setAttribute("id", '' + i + j);
 			}
 		}
@@ -105,7 +106,7 @@ function DatePicker() {
 				var div = document.getElementById('' + i + j);
 				div.onclick = function() {
 					var coordinates = this.getAttribute('id').split('');
-					console.log(grid[coordinates[0]][coordinates[1]].date.toDateString());
+					// console.log(grid[coordinates[0]][coordinates[1]].date.toDateString());
 					showInfo(coordinates[0], coordinates[1]);
 				};
 			}

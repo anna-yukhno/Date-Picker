@@ -1,0 +1,16 @@
+@mixin cellSize($size){
+  width: #{$size}px;
+  height: #{$size}px;
+}
+
+@mixin scale($scale){
+  $size: ((7 * $cellSize) + 20) * $scale;
+  $cell: $cellSize * $scale;
+  #main{
+    width: #{$size}px;
+    height: #{$size}px;
+    .cell{
+      @include cellSize($cell);
+    }
+  }
+}
